@@ -28,6 +28,7 @@ app.use(require('./config/checkToken'))
   // return JSON
 // })
 app.use('/api/users', require('./routes/api/users'));
+app.use('/api/notes', require('./routes/api/notes'));
 
 
 // The following "catch all" route (note the *) is necessary

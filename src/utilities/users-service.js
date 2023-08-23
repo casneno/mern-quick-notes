@@ -20,7 +20,6 @@ export function getToken() {
   const token = localStorage.getItem('token')
   if (!token) return null;
   // check if existing token is expired
-  console.log(token)
   const payload = JSON.parse(atob(token.split('.')[1])) //first we take only the segment of the token that contains our payload (index = [1]), then we transform it into a strinn using atob(), and finally we transform it into an object with the JSON.parse.
   // A JWT's exp is expressed in seconds, not milliseconds
   if (payload.exp * 1000 < Date.now()) {
@@ -41,7 +40,6 @@ export function getUser() {
 /* ---------------------LOGIN--------------------- */
 export async function login(userData) {
   const token = await usersAPI.login(userData);
-  console.log(token)
   localStorage.setItem('token', token);
   return getUser();
 }

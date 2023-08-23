@@ -47,7 +47,6 @@ async function login (req,res){
     const email = req.body.email
     const password = req.body.password
     const user = await User.findOne({email:email});
-    console.log(user)
     if(!user) throw new Error(); //stops if there is no user
     const compare = await bcrypt.compare(password, user.password); //compare hashed passwords
     if(!compare) throw new Error(); //stops if passwords don't match
@@ -64,3 +63,4 @@ function checkToken(req, res){
   console.log('req.user:', req.user);
   res.json(req.exp);
 }
+
