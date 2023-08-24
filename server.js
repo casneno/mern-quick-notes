@@ -37,7 +37,7 @@ app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-const port = process.env.PORT || 5000; //'if there is no environemntal variable telling em to use a port, then use port 5000 by default
+const port = process.env.PORT || 5001; //'if there is no environemntal variable telling em to use a port, then use port 5000 by default
 
 app.listen(port, function() {
   console.log(`Express app running on port ${port}`)

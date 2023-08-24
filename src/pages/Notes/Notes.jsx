@@ -10,25 +10,16 @@ export default function Notes ({user}){
     user: user._id
   })
 
+  async function getNotes(){
+    const allNotes = await noteAPI.getNotes()
+    setNotes(allNotes);
+  }
+  
   //With HOOK
   useEffect(()=>{
-    async function getNotes(){
-      const allNotes = await noteAPI.getNotes()
-      setNotes(allNotes);
-    }
     getNotes();
   }, [])
   
-  //Without HOOK
-  // async function getNotes(){
-  //   try{
-  //     const allNotes = await noteAPI.getNotes()
-  //     setNotes(allNotes);
-  //   } catch (error) {
-  //     console.error('Error fetching data:', error);
-  //   }
-  // }
-  // getNotes()
 
   //change newNote state
   function handleChange(evt){
@@ -38,7 +29,8 @@ export default function Notes ({user}){
   //Send to database
   async function handleAddNote(evt){
     evt.preventDefault();
-    await noteAPI.addNote(newNote);
+    const addedNote = await noteAPI.addNote(newNote);
+    setNotes([...notes, addedNote]);
     // setNotes(newNote)
     setNewNote({text:'', user: getUser()._id})
   }

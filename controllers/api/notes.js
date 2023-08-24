@@ -21,10 +21,9 @@ async function getNotes(req, res) {
 
 async function addNote(req, res) {
   try {
-    console.log('req.body:', req.body)
-    await Note.create(req.body)
-    res.json({message: 'New Note Created'})
+    const newNote = await Note.create(req.body)
+    res.json(newNote)
   } catch (error) {
     console.error(error);
   }
- }
+}
